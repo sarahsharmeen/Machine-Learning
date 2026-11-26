@@ -1,0 +1,76 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3RmVypnBU3NI",
+        "outputId": "c17e0a38-71d6-40a4-c589-c4367e6dda5d"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Training Data:\n",
+            "['Sunny', 'Warm', 'Normal', 'Strong', 'Yes']\n",
+            "['Sunny', 'Warm', 'High', 'Strong', 'Yes']\n",
+            "['Rainy', 'Cold', 'High', 'Weak', 'No']\n",
+            "['Sunny', 'Warm', 'High', 'Weak', 'Yes']\n",
+            "\n",
+            "Final Hypothesis:\n",
+            "['Sunny', 'Warm', '?', '?']\n"
+          ]
+        }
+      ],
+      "source": [
+        "# FIND-S Algorithm\n",
+        "\n",
+        "# Training data\n",
+        "training_data = [\n",
+        "    ['Sunny', 'Warm', 'Normal', 'Strong', 'Yes'],\n",
+        "    ['Sunny', 'Warm', 'High', 'Strong', 'Yes'],\n",
+        "    ['Rainy', 'Cold', 'High', 'Weak', 'No'],\n",
+        "    ['Sunny', 'Warm', 'High', 'Weak', 'Yes']\n",
+        "]\n",
+        "\n",
+        "# Initialize the most specific hypothesis\n",
+        "hypothesis = ['0', '0', '0', '0']\n",
+        "\n",
+        "print(\"Training Data:\")\n",
+        "for row in training_data:\n",
+        "    print(row)\n",
+        "\n",
+        "# FIND-S algorithm\n",
+        "for example in training_data:\n",
+        "    if example[-1] == 'Yes':  # Consider only positive examples\n",
+        "        for i in range(len(hypothesis)):\n",
+        "            if hypothesis[i] == '0':\n",
+        "                hypothesis[i] = example[i]\n",
+        "            elif hypothesis[i] != example[i]:\n",
+        "                hypothesis[i] = '?'\n",
+        "\n",
+        "# Display final hypothesis\n",
+        "print(\"\\nFinal Hypothesis:\")\n",
+        "print(hypothesis)"
+      ]
+    }
+  ]
+}
